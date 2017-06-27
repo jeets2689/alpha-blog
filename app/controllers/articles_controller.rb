@@ -17,7 +17,7 @@ end
 
  def create
  #render plain:params[:article].inspect
-  debugger
+  
  @article = Article.new(article_params)
 @article.user = current_user
 
