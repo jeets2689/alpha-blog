@@ -48,11 +48,16 @@ def show
 end
 
 def destroy
- @user = User.find(params[:id])
- @user.destroy
- flash[:danger] = "User and all articles created by Users have been deleted"
- redirect_to users_path
-end 
+
+@user = User.find(params[:id])
+
+@user.destroy
+
+flash[:danger] = "User and all articles created by user have been deleted"
+
+redirect_to users_path
+
+end
 
 private
 
@@ -63,12 +68,14 @@ def set_user
  @user = User.find(params[:id])
 end
 
-def require_same_user
-  current_user != @user and !current_user.admin?
+
+  
+ def require_same_user
+if current_user != @user and !current_user.admin?
  	flash[:danger] = "You can only edit your account"
     redirect_to root_path
-  
- end
+end
+end
 
  def require_admin
    if logged_in? and !current_user.admin?
